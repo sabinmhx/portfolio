@@ -7,10 +7,43 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy_v1:
+  create_directories_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if v1 directory exists
+        run: |
+          curl -s --head --fail -o /dev/null -u ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} ftp://sabin-maharjan.com.np/sabin-maharjan.com.np/v1/
+          echo "::set-output name=directory_v1_exists::$(echo $?)"
+
+      - name: Create v1 directory on FTP server if it does not exist
+        if: steps.check_v1_directory.outputs.directory_v1_exists != '0'
+        run: |
+          echo "Creating v1 directory"
+          curl -Q "MKD /sabin-maharjan.com.np/v1" --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} ftp://sabin-maharjan.com.np
+
+      - name: Check if v2 directory exists
+        run: |
+          curl -s --head --fail -o /dev/null -u ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} ftp://sabin-maharjan.com.np/sabin-maharjan.com.np/v2/
+          echo "::set-output name=directory_v2_exists::$(echo $?)"
+
+      - name: Create v2 directory on FTP server if it does not exist
+        if: steps.check_v2_directory.outputs.directory_v2_exists != '0'
+        run: |
+          echo "Creating v2 directory"
+          curl -Q "MKD /sabin-maharjan.com.np/v2" --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} ftp://sabin-maharjan.com.np
+
+      - name: Check if v3 directory exists
+        run: |
+          curl -s --head --fail -o /dev/null -u ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} ftp://sabin-maharjan.com.np/sabin-maharjan.com.np/v3/
+          echo "::set-output name=directory_v3_exists::$(echo $?)"
+
+      - name: Create v3 directory on FTP server if it does not exist
+        if: steps.check_v3_directory.outputs.directory_v3_exists != '0'
+        run: |
+          echo "Creating v3 directory"
+          curl -Q "MKD /sabin-maharjan.com.np/v3" --user ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }} ftp://sabin-maharjan.com.np
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -21,14 +54,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: v1/
-          remote-dir: /sabin-maharjan.com/v1/
-
-  deploy_v2:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+          remote-dir: /sabin-maharjan.com.np/v1/  # Ensure correct remote directory
 
       - name: Deploy v2 to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -37,14 +63,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: v2/
-          remote-dir: /sabin-maharjan.com.np/v2/
-
-  deploy_v3:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+          remote-dir: /sabin-maharjan.com.np/v2/  # Ensure correct remote directory
 
       - name: Deploy v3 to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -53,4 +72,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: v3/
-          remote-dir: /sabin-maharjan.com.np/v3/
+          remote-dir: /sabin-maharjan.com.np/v3/  # Ensure correct remote directory
