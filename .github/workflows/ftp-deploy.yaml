@@ -20,8 +20,8 @@ jobs:
           server: sabin-maharjan.com.np
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: v1/
-          remote-dir: sabin-maharjan.com/v1/
+          local-dir: v1
+          remote-dir: sabin-maharjan.com/v1
 
   deploy_v2:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: v2/
-          remote-dir: sabin-maharjan.com.np/v2/
+          remote-dir: sabin-maharjan.com.np/v2
 
   deploy_v3:
     runs-on: ubuntu-latest
@@ -53,4 +53,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: v3/
-          remote-dir: sabin-maharjan.com.np/v3/
+          remote-dir: sabin-maharjan.com.np/v3
