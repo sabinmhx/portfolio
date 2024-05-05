@@ -1,0 +1,55 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_v1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy v1 to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: sabin-maharjan.com.np
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./v1
+          remote-dir: /v1
+
+  deploy_v2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy v2 to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: sabin-maharjan.com.np
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./v2
+          remote-dir: /v2
+
+  deploy_v3:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy v3 to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: sabin-maharjan.com.np
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./v3
+          remote-dir: /v3
