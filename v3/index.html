@@ -77,6 +77,36 @@
       transform: scaleX(1);
       /* Expand the underline to full width on hover */
     }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #000;
+      /* Initial color */
+      margin-left: 5px;
+      /* Adjust spacing as needed */
+      animation: colorChange 5s infinite;
+      /* Animation */
+    }
+
+    @keyframes colorChange {
+      0% {
+        background-color: #ff0000;
+        /* Start color */
+      }
+
+      50% {
+        background-color: #00ff00;
+        /* Middle color */
+      }
+
+      100% {
+        background-color: #0000ff;
+        /* End color */
+      }
+    }
   </style>
 </head>
 
@@ -85,7 +115,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <h1 class="mb-3">Sabin Maharjan</h1>
+        <h1 class="mb-3">Sabin Maharjan<span class="dot"></span></h1>
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light">
