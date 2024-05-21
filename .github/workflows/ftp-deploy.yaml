@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        version: [v1, v2, v3]
+        version: [v1, v2, v3, v4.0.0]
 
     steps:
       - name: Checkout code
@@ -29,9 +29,9 @@ jobs:
         run: ls -la ${{ matrix.version }}
 
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: sabin-maharjan.com.np
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ${{ matrix.version }}
