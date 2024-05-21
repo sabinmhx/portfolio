@@ -34,6 +34,6 @@ jobs:
           server: sabin-maharjan.com.np
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ${{ matrix.version }}
-          remote-dir: /sabin-maharjan.com.np/${{ matrix.version }}
+          local-dir: ${{ matrix.version }}/
+          remote-dir: /sabin-maharjan.com.np/${{ matrix.version }}/
           git-ftp-args: --mkdir
