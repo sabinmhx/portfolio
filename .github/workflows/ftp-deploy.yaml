@@ -14,8 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List local directory for v1
+        run: ls -la v1/
+
       - name: Deploy v1 to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.5
         with:
           server: sabin-maharjan.com.np
           username: ${{ secrets.FTP_USERNAME }}
@@ -30,8 +33,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List local directory for v2
+        run: ls -la v2/
+
       - name: Deploy v2 to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.5
         with:
           server: sabin-maharjan.com.np
           username: ${{ secrets.FTP_USERNAME }}
@@ -46,8 +52,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List local directory for v3
+        run: ls -la v3/
+
       - name: Deploy v3 to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.5
         with:
           server: sabin-maharjan.com.np
           username: ${{ secrets.FTP_USERNAME }}
