@@ -1,0 +1,9 @@
+[submodule "portfolio-v1"]
+	path = portfolio-v1
+	url = https://github.com/sabinmhx/portfolio-v1.git
+[submodule "portfolio-v2"]
+	path = portfolio-v2
+	url = https://github.com/sabinmhx/portfolio-v2.git
+[submodule "portfolio-v3"]
+	path = portfolio-v3
+	url = https://github.com/sabinmhx/portfolio-v3.git
